@@ -5,11 +5,12 @@ function getUser() {
 }
 
 function getUserById(id) {
-    for (let i = 0; i < users.userList.length; i++) {
-        if (id == users.userList[i].id) {
-            return users.userList[i];
+    const userId = users.userList.filter((user) => {
+        if (user.id == id) {
+            return user;
         }
-    }
+    });
+    return userId;
 }
 
 function addNewUser(newUser) {
@@ -18,21 +19,22 @@ function addNewUser(newUser) {
 }
 
 function updateUser(id, updatedUser) {
-    for (let i = 0; i < users.userList.length; i++) {
-        if (users.userList[i].id == id) {
-            users.userList[i] = updatedUser;
-            return users.userList;
+    users.userList = users.userList.map((user) => {
+        if (user.id == id) {
+            user = updatedUser;
         }
-    }
+        return user;
+    });
+    return users.userList;
 }
 
 function deleteUser(id) {
-    for (let i = 0; i < users.userList.length; i++) {
-        if (users.userList[i].id == id) {
-            users.userList.splice(i, 1);
-            return users.userList;
+    return users.userList.filter((user) => {
+        if (user.id == id) {
+            const index = users.userList.indexOf(user);
+            users.userList.splice(index, 1);
         }
-    }
+    });
 }
 
 module.exports.getUser = getUser;
