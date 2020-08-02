@@ -5,28 +5,54 @@ const app = express();
 app.use(express.json());
 
 app.get('/users', (req, res) => {
-    res.send(JSON.stringify(result.getUser()));
+    result.getUser()
+        .then((data) => {
+            res.send(data);
+        }).catch((err) => {
+            res.send(err);
+        });
 });
 
 app.get('/users/:id', (req, res) => {
     const urlId = parseInt(req.params.id);
-    res.send(JSON.stringify(result.getUserById(urlId)));
+    result.getUserById(urlId)
+        .then((data) => {
+            res.send(data);
+        }).catch((err) => {
+            res.send(err);
+        });
 });
 
 app.post('/users', (req, res) => {
     const newUser = req.body;
-    res.send(JSON.stringify(result.addNewUser(newUser)));
+    result.addNewUser(newUser)
+        .then((data) => {
+            res.send(data);
+        }).catch((err) => {
+            res.send(err);
+        });
 });
 
 app.put('/users/:id', (req, res) => {
     const urlId = parseInt(req.params.id);
     const updatedUser = req.body;
-    res.send(JSON.stringify(result.updateUser(urlId, updatedUser)));
+    result.updateUser(urlId, updatedUser)
+        .then((data) => {
+            res.send(data);
+        }).catch((err) => {
+            res.send(err);
+        });
 });
 
 app.delete('/users/:id', (req, res) => {
     const urlId = parseInt(req.params.id);
-    res.send(JSON.stringify(result.deleteUser(urlId)));
+    result.deleteUser(urlId)
+        .then((data) => {
+            res.send(data);
+        }).catch((err) => {
+            res.send(err);
+        });
+    // res.send(JSON.stringify(result.deleteUser(urlId)));
 });
 
 app.listen(8080, () => {

@@ -1,41 +1,49 @@
 const users = require('./database.js');
 
 function getUser() {
-    return users.userList;
+    return users.getUsers()
+        .then((data) => {
+            return data;
+        }).catch((err) => {
+            console.log(err);
+        });
 }
 
 function getUserById(id) {
-    const userId = users.userList.filter((user) => {
-        if (user.id == id) {
-            return user;
-        }
-    });
-    return userId;
+    return users.getUserById(id)
+        .then((data) => {
+            return data;
+        }).catch((err) => {
+            console.log(err);
+        });
 }
 
 function addNewUser(newUser) {
-    users.userList.push(newUser);
-    return users.userList;
+    return users.addNewUser(newUser)
+        .then((data) => {
+            return data;
+        }).catch((err) => {
+            console.log(err);
+        });
 }
 
 function updateUser(id, updatedUser) {
-    users.userList = users.userList.map((user) => {
-        if (user.id == id) {
-            user = updatedUser;
-        }
-        return user;
-    });
-    return users.userList;
+
+    return users.updateUser(id, updatedUser)
+        .then((data) => {
+            return data;
+        }).catch((err) => {
+            console.log(err);
+        });
 }
 
 function deleteUser(id) {
-    return users.userList = users.userList.filter((user) => {
-        return user.id != id;
-        // if (user.id == id) {
-        //     const index = users.userList.indexOf(user);
-        //     users.userList.splice(index, 1);
-        // }
-    });
+    return users.deleteUser(id)
+        .then((data) => {
+            return data;
+        }).catch((err) => {
+            console.log(err);
+        });
 }
 
 module.exports.getUser = getUser;
