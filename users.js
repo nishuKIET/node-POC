@@ -29,11 +29,12 @@ function updateUser(id, updatedUser) {
 }
 
 function deleteUser(id) {
-    return users.userList.filter((user) => {
-        if (user.id == id) {
-            const index = users.userList.indexOf(user);
-            users.userList.splice(index, 1);
-        }
+    return users.userList = users.userList.filter((user) => {
+        return user.id != id;
+        // if (user.id == id) {
+        //     const index = users.userList.indexOf(user);
+        //     users.userList.splice(index, 1);
+        // }
     });
 }
 
