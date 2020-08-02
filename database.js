@@ -1,7 +1,10 @@
-const users = [
-    { "id": 1, "name": "Nishu", "petName": "Babu" },
-    { "id": 2, "name": "Mohak", "petName": "Mummaa" },
-    { "id": 3, "name": "Kenneth", "petName": "Daddii" }
-]
+var MongoClient = require('mongodb').MongoClient;
+MongoClient.connect("mongodb://localhost:27017/BabbuDb", function (err, client) {
+    const db = client.db('BabbuDb');
 
-module.exports.userList = users;
+    if (err)
+        console.log(err);
+    else {
+        console.log("Connected to MongoDB");
+    }
+});
