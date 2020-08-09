@@ -14,7 +14,7 @@ app.get('/users', (req, res) => {
 });
 
 app.get('/users/:id', (req, res) => {
-    const urlId = parseInt(req.params.id);
+    const urlId = req.params.id;
     result.getUserById(urlId)
         .then((data) => {
             res.send(data);

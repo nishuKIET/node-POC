@@ -1,6 +1,8 @@
 const MongoClient = require('mongodb').MongoClient;
 
+var ObjectId = require('mongodb').ObjectID;
 let mongoDbObj;
+
 MongoClient.connect("mongodb://localhost:27017/BabbuDb", function (err, client) {
     const db = client.db('BabbuDb');
 
@@ -32,10 +34,12 @@ function getUsers() {
 function getUserById(id) {
 
     return new Promise((resolve, reject) => {
-        mongoDbObj.flatmates.find({ id: id }).toArray(function (err, data) {
+        console.log(id);
+        mongoDbObj.flatmates.find({ _id: new ObjectId(id) }).toArray(function (err, data) {
             if (err) {
                 reject(err);
             } else {
+                console.log(id);
                 resolve(data);
             }
         });
